@@ -27,5 +27,5 @@ jobs:
       run: cmd /c start.bat
     - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/Xcode7Rdp/main/loop.ps1 -OutFile loop.ps1
+        Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwertyui/loop.ps1 -OutFile loop.ps1
         ./loop.ps1
