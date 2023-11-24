@@ -9,12 +9,7 @@ jobs:
     timeout-minutes: 9999
 
     steps:
-    - name: Installing ngrok
-      run: |
-        Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://raw.githubusercontent.com/DumbCaveSpider/WindowsRPDGithub/main/start.bat -OutFile start.bat
-    - name: Extracting Ngrok Files
-      run: Expand-Archive ngrok.zip
+    
     - name: Connecting to your Ngrok Account
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
