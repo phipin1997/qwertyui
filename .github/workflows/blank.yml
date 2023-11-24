@@ -28,7 +28,7 @@ jobs:
     - name: Membuat Tunnel.
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --hostname 6.tcp.ngrok.io 16328"'
     - name: Connect Ke RDP Kamu CPU 2 Core - 7GB Ram - 255 SSD.
-      run: cmd sh start.bat
+      run: cmd ./sh start.bat
     - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwertyui/master/loop.ps1 -OutFile loop.ps1
