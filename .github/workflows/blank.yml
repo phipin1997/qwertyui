@@ -21,6 +21,9 @@ jobs:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Mengaktifkan Akses RDP.
       run: |
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
         
     - name: Membuat Tunnel.
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
@@ -28,5 +31,5 @@ jobs:
       run: cmd /c start.bat
     - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/Xcode7Rdp/main/loop.ps1 -OutFile loop.ps1
+        Invoke-WebRequest https://github.com/phipin1997/qwertyui/ -OutFile loop.ps1
         ./loop.ps1
