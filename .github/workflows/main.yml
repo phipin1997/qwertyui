@@ -1,5 +1,4 @@
-GNU nano 7.2                                                           main-1.yml
-name: RDP 10
+name: WindowsRPD
 
 on: workflow_dispatch
 
@@ -7,33 +6,29 @@ jobs:
   build:
 
     runs-on: windows-latest
-    timeout-minutes: 11111
+    timeout-minutes: 9999
 
     steps:
-    - name: Mendownload Ngrok.
+    - name: Installing ngrok
       run: |
-        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/phipin197/main/start.bat -OutFile start.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/phipin197/main/wallpaper.png -OutFile wallpaper.bmp
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/phipin197/main/wallpaper.bat -OutFile wallpaper.bat
-    - name: Mengextract Ngrok File.
+        Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/DumbCaveSpider/WindowsRPDGithub/main/start.bat -OutFile start.bat
+    - name: Extracting Ngrok Files
       run: Expand-Archive ngrok.zip
-    - name: Connect Ke Akun Ngrok.
+    - name: Connecting to your Ngrok Account
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Mengaktifkan Akses RDP.
-      run: |
+    - name: Activating Windows
+      run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-        copy wallpaper.bmp D:\a\wallpaper.bmp
-        copy wallpaper.bat D:\a\wallpaper.bat
-    - name: Membuat Tunnel.
+    - name: Creating Tunnel System
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
-    - name: Connect Ke RDP Kamu CPU 2 Core - 7GB Ram - 255 SSD.
+    - name: Connecting to your RDP
       run: cmd /c start.bat
-    - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
-      run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/DavidDev-1/Xcode7Rdp/main/loop.ps1 -OutFile loop.ps1
+    - name: Looping
+      run: | 
+        Invoke-WebRequest https://raw.githubusercontent.com/DumbCaveSpider/WindowsRPDGithub/main/loop.ps1 -OutFile loop.ps1
         ./loop.ps1
