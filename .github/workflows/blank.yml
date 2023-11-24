@@ -12,7 +12,7 @@ jobs:
     - name: Mendownload Ngrok.
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwerty/master/start.bat -OutFile start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwertyui/master/start.bat -OutFile start.bat
     - name: Mengextract Ngrok File.
       run: Expand-Archive ngrok.zip
     - name: Connect Ke Akun Ngrok.
@@ -31,5 +31,5 @@ jobs:
       run: cmd /c start.bat
     - name: Berhasil Dibuat! Anda Bisa Menutup Tab Sekarang.
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwerty/master/loop.ps1 -OutFile loop.ps1
+        Invoke-WebRequest https://raw.githubusercontent.com/phipin1997/qwertyui/master/loop.ps1 -OutFile loop.ps1
         ./loop.ps1
